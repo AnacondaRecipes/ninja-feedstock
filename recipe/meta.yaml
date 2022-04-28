@@ -2,7 +2,7 @@
 {% set build_number = "5" %}
 
 package:
-  name: ninja-all
+  name: ninja-suite
   version: {{ version }}
 
 source:
@@ -15,41 +15,26 @@ build:
   number: {{ build_number }}
 
 outputs:
+  - name: ninja-base
+    script: build-ninja.sh  # [unix]
+    script: bld-ninja.bat   # [win]
+    build:
+      ignore_run_exports:
+        - vc
+    requirements:
+      build:
+        - {{ compiler("cxx") }}
+        - cmake
+        - make  # [not win]
+    test:
+      commands:
+        - ninja --version
+
   - name: ninja
-    script: build-ninja.sh  # [unix]
-    script: bld-ninja.bat   # [win]
-    build:
-      ignore_run_exports:
-        - vc
     requirements:
-      build:
-        - {{ compiler("cxx") }}
-        - python
-        - cmake
-        - make  # [not win]
-      host:
-        - python
       run:
+        - {{ pin_subpackage('ninja-base', exact=True) }}
         - python
-    test:
-      commands:
-        - ninja --version
-
-  - name: ninja-no-python
-    script: build-ninja.sh  # [unix]
-    script: bld-ninja.bat   # [win]
-    build:
-      ignore_run_exports:
-        - vc
-    requirements:
-      build:
-        - {{ compiler("cxx") }}
-        - cmake
-        - make  # [not win]
-    test:
-      commands:
-        - ninja --version
-
 
 about:
   home: https://ninja-build.org/
