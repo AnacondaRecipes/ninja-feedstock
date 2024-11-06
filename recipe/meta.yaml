@@ -25,6 +25,7 @@ outputs:
         - {{ compiler("cxx") }}
         - cmake
         - make  # [not win]
+        - gtest
     test:
       commands:
         - ninja --version
