@@ -1,5 +1,5 @@
-{% set version = "1.10.2" %}
-{% set build_number = "5" %}
+{% set version = "1.12.1" %}
+{% set build_number = "0" %}
 
 package:
   name: ninja-suite
@@ -8,7 +8,7 @@ package:
 source:
   fn: v{{ version }}.tar.gz
   url: https://github.com/ninja-build/ninja/archive/v{{ version }}.tar.gz
-  sha256: ce35865411f0490368a8fc383f29071de6690cbadc27704734978221f25e2bed
+  sha256: 821bdff48a3f683bc4bb3b6f0b5fe7b2d647cf65d52aeb63328c91a6c6df285a
 
 build:
   number: {{ build_number }}
