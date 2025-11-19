@@ -1,4 +1,4 @@
-{% set version = "1.12.1" %}
+{% set version = "1.13.1" %}
 {% set build_number = "0" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 source:
   fn: v{{ version }}.tar.gz
   url: https://github.com/ninja-build/ninja/archive/v{{ version }}.tar.gz
-  sha256: 821bdff48a3f683bc4bb3b6f0b5fe7b2d647cf65d52aeb63328c91a6c6df285a
+  sha256: f0055ad0369bf2e372955ba55128d000cfcc21777057806015b45e4accbebf23
 
 build:
   number: {{ build_number }}
@@ -22,6 +22,7 @@ outputs:
         - vc
     requirements:
       build:
+        - {{ stdlib("c") }}
         - {{ compiler("cxx") }}
         - cmake
         - make  # [not win]
@@ -44,7 +45,7 @@ about:
   summary: A small build system with a focus on speed
   dev_url: https://github.com/ninja-build/ninja
   doc_url: https://ninja-build.org/manual.html
-  doc_source_url: https://github.com/ninja-build/ninja/tree/master/doc
+  description: A small build system with a focus on speed
 
 extra:
   recipe-maintainers:
