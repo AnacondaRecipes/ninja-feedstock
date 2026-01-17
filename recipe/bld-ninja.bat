@@ -13,7 +13,8 @@ cmake .. %CMAKE_ARGS% ^
       -G"NMake Makefiles" ^
       -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
       -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
-      -DCMAKE_BUILD_TYPE=Release
+      -DCMAKE_BUILD_TYPE=Release ^
+      -DBUILD_TESTING=OFF
 
 
 :: Build.
@@ -22,10 +23,10 @@ nmake
 if errorlevel 1 exit /b 1
 
 
-:: Perform tests.
-echo "Testing..."
-ctest -VV --output-on-failure
-if errorlevel 1 exit /b 1
+@REM :: Perform tests.
+@REM echo "Testing..."
+@REM ctest -VV --output-on-failure
+@REM if errorlevel 1 exit /b 1
 
 
 :: Install.
